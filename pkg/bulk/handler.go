@@ -151,10 +151,14 @@ func (h *Handler) handleCreateJob(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Take a snapshot of the job for the response before starting async processing
+	// to avoid data race between the goroutine modifying job state and response serialization
+	response := h.jobToResponse(job)
+
 	// Process the job immediately (in a real implementation, this would be async)
 	go h.processJob(job.ID, req.Query)
 
-	h.respondJSON(w, h.jobToResponse(job), http.StatusOK)
+	h.respondJSON(w, response, http.StatusOK)
 }
 
 // handleListJobs handles GET /services/data/vXX.X/jobs/query
