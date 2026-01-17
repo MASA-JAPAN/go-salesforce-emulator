@@ -1,5 +1,5 @@
 # Binaries
-sfemulator
+/sfemulator
 *.exe
 *.exe~
 *.dll
