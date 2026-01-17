@@ -363,8 +363,8 @@ func TestGetRecordCounts(t *testing.T) {
 
 	// Load test data
 	fixtures := testutil.NewFixtures(emu.Store())
-	fixtures.LoadSampleAccounts(5)
-	fixtures.LoadSampleContacts(10, nil)
+	_, _ = fixtures.LoadSampleAccounts(5)
+	_, _ = fixtures.LoadSampleContacts(10, nil)
 
 	client := createAuthenticatedClient(t, emu, baseURL)
 

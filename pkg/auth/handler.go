@@ -137,7 +137,7 @@ func (h *Handler) respondSuccess(w http.ResponseWriter, session *Session) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(response)
+	_ = json.NewEncoder(w).Encode(response)
 }
 
 func (h *Handler) respondError(w http.ResponseWriter, errorCode, description string, status int) {
@@ -145,7 +145,7 @@ func (h *Handler) respondError(w http.ResponseWriter, errorCode, description str
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	json.NewEncoder(w).Encode(response)
+	_ = json.NewEncoder(w).Encode(response)
 }
 
 // ValidateRequest validates the Authorization header

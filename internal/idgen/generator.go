@@ -91,7 +91,7 @@ func (g *Generator) Generate() string {
 
 	// Generate random bytes for uniqueness
 	randomBytes := make([]byte, 10)
-	rand.Read(randomBytes)
+	_, _ = rand.Read(randomBytes)
 
 	// Create base ID (15 chars)
 	// Format: 3-char prefix + 12-char unique portion
@@ -155,7 +155,7 @@ func IsValid(id string) bool {
 
 	// Check all characters are alphanumeric
 	for _, c := range id {
-		if !((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
+		if (c < 'A' || c > 'Z') && (c < 'a' || c > 'z') && (c < '0' || c > '9') {
 			return false
 		}
 	}

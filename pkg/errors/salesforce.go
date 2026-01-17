@@ -50,7 +50,7 @@ func NewNotFoundError(objectType, recordID string) SalesforceError {
 // NewObjectNotFoundError creates an error for when an object type doesn't exist
 func NewObjectNotFoundError(objectType string) SalesforceError {
 	return SalesforceError{
-		Message:   fmt.Sprintf("The requested resource does not exist"),
+		Message:   "The requested resource does not exist",
 		ErrorCode: ErrorCodeNotFound,
 		Fields:    []string{},
 	}

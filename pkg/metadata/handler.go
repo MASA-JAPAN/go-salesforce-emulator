@@ -373,7 +373,7 @@ func (h *Handler) respondSOAPFault(w http.ResponseWriter, faultCode, faultString
 
 	w.Header().Set("Content-Type", "text/xml")
 	w.WriteHeader(http.StatusInternalServerError)
-	w.Write([]byte(response))
+	_, _ = w.Write([]byte(response))
 }
 
 func (h *Handler) respondDeployResult(w http.ResponseWriter, id string, done bool, status string) {
@@ -392,7 +392,7 @@ func (h *Handler) respondDeployResult(w http.ResponseWriter, id string, done boo
 
 	w.Header().Set("Content-Type", "text/xml")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(response))
+	_, _ = w.Write([]byte(response))
 }
 
 func (h *Handler) respondCheckDeployStatus(w http.ResponseWriter, status *DeploymentStatus, includeDetails bool) {
@@ -426,7 +426,7 @@ func (h *Handler) respondCheckDeployStatus(w http.ResponseWriter, status *Deploy
 
 	w.Header().Set("Content-Type", "text/xml")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(response))
+	_, _ = w.Write([]byte(response))
 }
 
 func (h *Handler) respondCancelDeployResult(w http.ResponseWriter, status *DeploymentStatus) {
@@ -444,7 +444,7 @@ func (h *Handler) respondCancelDeployResult(w http.ResponseWriter, status *Deplo
 
 	w.Header().Set("Content-Type", "text/xml")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(response))
+	_, _ = w.Write([]byte(response))
 }
 
 func (h *Handler) respondRetrieveResult(w http.ResponseWriter, id string, done bool, status string) {
@@ -463,7 +463,7 @@ func (h *Handler) respondRetrieveResult(w http.ResponseWriter, id string, done b
 
 	w.Header().Set("Content-Type", "text/xml")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(response))
+	_, _ = w.Write([]byte(response))
 }
 
 func (h *Handler) respondCheckRetrieveStatus(w http.ResponseWriter, status *RetrievalStatus, includeZip bool) {
@@ -494,7 +494,7 @@ func (h *Handler) respondCheckRetrieveStatus(w http.ResponseWriter, status *Retr
 
 	w.Header().Set("Content-Type", "text/xml")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(response))
+	_, _ = w.Write([]byte(response))
 }
 
 func generateID(prefix string) string {

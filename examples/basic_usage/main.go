@@ -78,7 +78,7 @@ func main() {
 
 	// Step 6: Load fixtures and query
 	fixtures := testutil.NewFixtures(emu.Store())
-	fixtures.LoadSampleAccounts(5)
+	_, _ = fixtures.LoadSampleAccounts(5)
 	fmt.Printf("✓ Loaded 5 sample accounts\n\n")
 
 	results, err = queryAccounts(client, baseURL, token)
@@ -112,7 +112,7 @@ func authenticate(client *http.Client, baseURL, clientID, clientSecret, username
 	if err != nil {
 		return "", err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	var result map[string]interface{}
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
@@ -142,7 +142,7 @@ func createAccount(client *http.Client, baseURL, token, name, industry string) (
 	if err != nil {
 		return "", err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	var result map[string]interface{}
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
@@ -165,7 +165,7 @@ func getAccount(client *http.Client, baseURL, token, accountID string) (map[stri
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	var result map[string]interface{}
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
@@ -184,7 +184,7 @@ func queryAccounts(client *http.Client, baseURL, token string) (map[string]inter
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	var result map[string]interface{}
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
@@ -208,7 +208,7 @@ func updateAccount(client *http.Client, baseURL, token, accountID, newName strin
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	if resp.StatusCode != http.StatusNoContent {
 		body, _ := io.ReadAll(resp.Body)
@@ -226,7 +226,7 @@ func deleteAccount(client *http.Client, baseURL, token, accountID string) error 
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	if resp.StatusCode != http.StatusNoContent {
 		body, _ := io.ReadAll(resp.Body)

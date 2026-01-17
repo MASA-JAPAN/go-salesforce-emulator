@@ -281,20 +281,20 @@ func (h *Handler) handleGetResults(w http.ResponseWriter, r *http.Request, jobID
 // processJob processes a bulk query job
 func (h *Handler) processJob(jobID, query string) {
 	// Update state to InProgress
-	h.store.UpdateBulkJobState(jobID, storage.JobStateInProgress)
+	_ = h.store.UpdateBulkJobState(jobID, storage.JobStateInProgress)
 
 	// Execute the query
 	records, err := h.executeQuery(query)
 	if err != nil {
-		h.store.UpdateBulkJobState(jobID, storage.JobStateFailed)
+		_ = h.store.UpdateBulkJobState(jobID, storage.JobStateFailed)
 		return
 	}
 
 	// Store results
-	h.store.SetBulkJobResults(jobID, records)
+	_ = h.store.SetBulkJobResults(jobID, records)
 
 	// Update state to Complete
-	h.store.UpdateBulkJobState(jobID, storage.JobStateJobComplete)
+	_ = h.store.UpdateBulkJobState(jobID, storage.JobStateJobComplete)
 }
 
 // executeQuery executes a SOQL query for bulk processing
@@ -353,7 +353,7 @@ func (h *Handler) writeCSV(w http.ResponseWriter, records []storage.Record) {
 	}
 
 	// Write header row
-	writer.Write(headers)
+	_ = writer.Write(headers)
 
 	// Write data rows
 	for _, record := range records {
@@ -366,7 +366,7 @@ func (h *Handler) writeCSV(w http.ResponseWriter, records []storage.Record) {
 				row[i] = toString(val)
 			}
 		}
-		writer.Write(row)
+		_ = writer.Write(row)
 	}
 }
 
@@ -394,13 +394,13 @@ func (h *Handler) jobToResponse(job *storage.BulkJob) JobResponse {
 func (h *Handler) respondError(w http.ResponseWriter, errors []sferrors.SalesforceError, status int) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	json.NewEncoder(w).Encode(errors)
+	_ = json.NewEncoder(w).Encode(errors)
 }
 
 func (h *Handler) respondJSON(w http.ResponseWriter, data interface{}, status int) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	json.NewEncoder(w).Encode(data)
+	_ = json.NewEncoder(w).Encode(data)
 }
 
 func extractObjectFromQuery(query string) string {

@@ -103,6 +103,6 @@ func (m *SessionManager) CleanExpired() {
 // generateToken generates a random access token
 func generateToken() string {
 	bytes := make([]byte, 32)
-	rand.Read(bytes)
+	_, _ = rand.Read(bytes)
 	return hex.EncodeToString(bytes)
 }
