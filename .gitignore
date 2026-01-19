@@ -1,5 +1,5 @@
 # Binaries
-/sfemulator
+/go-salesforce-emulator
 *.exe
 *.exe~
 *.dll

@@ -69,7 +69,7 @@ jobs:
           go-version: '1.24'
 
       - name: Build binary
-        run: go build -o sfemulator ./cmd/sfemulator
+        run: go build -o go-salesforce-emulator ./cmd/go-salesforce-emulator
 
       - name: Verify binary
-        run: ./sfemulator -h || true
+        run: ./go-salesforce-emulator -h || true

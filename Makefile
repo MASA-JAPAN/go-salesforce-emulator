@@ -1,7 +1,7 @@
 .PHONY: build test lint clean install run help
 
 # Binary name
-BINARY_NAME=sfemulator
+BINARY_NAME=go-salesforce-emulator
 
 # Go parameters
 GOCMD=go
@@ -21,7 +21,7 @@ all: build
 build:
 	@echo "Building..."
 	@mkdir -p $(BUILD_DIR)
-	$(GOBUILD) -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/sfemulator
+	$(GOBUILD) -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/go-salesforce-emulator
 
 ## test: Run all tests
 test:
@@ -60,7 +60,7 @@ clean:
 ## install: Install binary to GOPATH/bin
 install:
 	@echo "Installing..."
-	$(GOCMD) install ./cmd/sfemulator
+	$(GOCMD) install ./cmd/go-salesforce-emulator
 
 ## run: Run the emulator
 run: build

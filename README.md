@@ -75,13 +75,13 @@ func TestMyApp(t *testing.T) {
 
 ```bash
 # Install
-go install github.com/MASA-JAPAN/go-salesforce-emulator/cmd/sfemulator@latest
+go install github.com/MASA-JAPAN/go-salesforce-emulator/cmd/go-salesforce-emulator@latest
 
 # Run
-sfemulator -port 8080
+go-salesforce-emulator -port 8080
 
 # Or with custom credentials
-sfemulator -port 8080 \
+go-salesforce-emulator -port 8080 \
     -client-id myapp \
     -client-secret mysecret \
     -username test@example.com \
