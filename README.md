@@ -1,6 +1,7 @@
 # go-salesforce-emulator
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/MASA-JAPAN/go-salesforce-emulator.svg)](https://pkg.go.dev/github.com/MASA-JAPAN/go-salesforce-emulator)
+[![CI](https://github.com/MASA-JAPAN/go-salesforce-emulator/actions/workflows/ci.yml/badge.svg)](https://github.com/MASA-JAPAN/go-salesforce-emulator/actions/workflows/ci.yml)
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/MASA-JAPAN/go-salesforce-emulator)](https://goreportcard.com/report/github.com/MASA-JAPAN/go-salesforce-emulator)
@@ -25,9 +26,22 @@ Account, Contact, Lead, Opportunity, Case, User, Task, Event
 
 ## Installation
 
+### Go Module
+
 ```bash
 go get github.com/MASA-JAPAN/go-salesforce-emulator
 ```
+
+### Docker
+
+```bash
+docker pull ghcr.io/masa-japan/go-salesforce-emulator:latest
+docker run -p 8080:8080 ghcr.io/masa-japan/go-salesforce-emulator:latest
+```
+
+### Pre-built Binaries
+
+Download from [GitHub Releases](https://github.com/MASA-JAPAN/go-salesforce-emulator/releases).
 
 ## Quick Start
 
@@ -164,6 +178,19 @@ fixtures.LoadBasicCRM()
 // Load high-volume test data
 fixtures.LoadHighVolume(1000) // Creates 1000 accounts
 ```
+
+## Limitations
+
+This emulator is designed for **local development and testing**, not production use.
+
+- **In-memory storage** - All data is lost when the emulator stops
+- **Single instance** - No clustering or distributed state
+- **Simplified SOQL** - Basic query support; complex queries may not parse correctly
+- **No real authentication** - OAuth tokens are simulated; any valid format is accepted
+- **Limited field validation** - Field types are not strictly enforced
+- **No triggers/flows** - Salesforce automation is not emulated
+- **No field-level security** - All fields are accessible
+- **Subset of APIs** - Only the endpoints listed above are supported
 
 ## Compatibility
 
