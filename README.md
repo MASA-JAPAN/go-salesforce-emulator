@@ -1,5 +1,6 @@
 # go-salesforce-emulator
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/MASA-JAPAN/go-salesforce-emulator.svg)](https://pkg.go.dev/github.com/MASA-JAPAN/go-salesforce-emulator)
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/MASA-JAPAN/go-salesforce-emulator)](https://goreportcard.com/report/github.com/MASA-JAPAN/go-salesforce-emulator)
